@@ -1,7 +1,7 @@
 import numpy as np
 
 class Perceptron(object):
-    """Perceptron classifier
+    '''Perceptron classifier
 
     Parameters
     -----------
@@ -16,14 +16,14 @@ class Perceptron(object):
         weights after fitting
     errors_: list
         number of missclassifications in every epoch
-    """
+    '''
 
     def __init__(self, eta=0.01, n_iter=10):
         self.eta = eta
         self.n_iter = n_iter
 
     def fit(self, X, y):
-        """Fit training data
+        '''Fit training data
 
         Parameters
         -----------
@@ -36,7 +36,7 @@ class Perceptron(object):
         Returns
         --------
         self : object
-        """
+        '''
 
         # Initialize weight vector to zeros, adding length
         # one for the threshold / zero weight w0
@@ -54,16 +54,16 @@ class Perceptron(object):
         return self
 
     def net_input(self, X):
-        """Calculate net input"""
+        '''Calculate net input'''
         return np.dot(X, self.w_[1:]) + self.w_[0]
 
     def predict(self, X):
-        """Return class label after unit setup"""
+        '''Return class label after unit setup'''
         return np.where(self.net_input(X) >= 0.0, 1, -1)
 
 
 class AdalineGD(object):
-    """ADAptive LInear NEuron classifier
+    '''ADAptive LInear NEuron classifier
 
     Parameters
     -------------
@@ -78,13 +78,13 @@ class AdalineGD(object):
         Weights after fitting
     errors_ : list
         Number of missclassifications in  every epoch
-    """
+    '''
     def __init__(self, eta=0.01, n_iter=50):
         self.eta = eta
         self.n_iter = n_iter
 
     def fit(self, X, y):
-        """Fit training data.
+        '''Fit training data.
 
         Parameters
         -----------
@@ -98,7 +98,7 @@ class AdalineGD(object):
         Returns
         ---------
         self : object
-        """
+        '''
         self.w_ = np.zeros(1 + X.shape[1])
         self.cost_ = []
 
@@ -112,13 +112,13 @@ class AdalineGD(object):
         return self
 
     def net_input(self, X):
-        """Calculate net input"""
-        return np.dot(X, self.w_[1:]) + self.w_[0])
+        '''Calculate net input'''
+        return np.dot(X, self.w_[1:]) + self.w_[0]
 
     def activate(self, X):
-        """Compute linear activation"""
+        '''Compute linear activation'''
         return self.net_input(X)
 
     def predict(self, X):
-        """Return class label after unit step"""
+        '''Return class label after unit step'''
         return np.where(self.activation(X) >= 0.0, 1, -1)
